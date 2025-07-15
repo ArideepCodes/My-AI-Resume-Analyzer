@@ -27,13 +27,8 @@ from ui_components import (
     about_section
 )
 
-# Dashboard Components
+# Dashboard Manager (only this class exists)
 from dashboard.dashboard import DashboardManager
-from dashboard.dashboard import (
-    render_analytics_section,
-    render_activity_section,
-    render_suggestions_section
-)
 
 # Feature Modules
 from jobs.job_search import render_job_search

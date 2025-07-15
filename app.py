@@ -1,4 +1,12 @@
-﻿"""
+from ui_components import (
+    apply_modern_styles,
+    page_header,
+    hero_section,
+    feature_card,
+    about_section
+)
+
+"""
 Smart Resume AI - Main Application
 """
 import time

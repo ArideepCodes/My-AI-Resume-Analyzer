@@ -5,6 +5,7 @@ from ui_components import (
     feature_card,
     about_section
 )
+from dashboard.dashboard import DashboardManager
 
 from dashboard.dashboard import (
     render_analytics_section,

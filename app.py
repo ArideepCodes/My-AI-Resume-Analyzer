@@ -1,3 +1,24 @@
+import streamlit as st
+import datetime
+import time
+import json
+import io
+import base64
+import requests
+import traceback
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+from PIL import Image
+from docx import Document
+from docx.shared import Inches, Pt
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from streamlit_lottie import st_lottie
+
+# Set Streamlit page config
+st.set_page_config(page_title="Smart Resume Analyzer AI", layout="wide")
+
+# UI Components
 from ui_components import (
     apply_modern_styles,
     page_header,
@@ -6,48 +27,36 @@ from ui_components import (
     about_section
 )
 
+# Dashboard Components
+from dashboard.dashboard import DashboardManager
 from dashboard.dashboard import (
-    DashboardManager,
     render_analytics_section,
     render_activity_section,
     render_suggestions_section
 )
 
+# Feature Modules
 from jobs.job_search import render_job_search
 from feedback.feedback import FeedbackManager
-from config.courses import COURSES_BY_CATEGORY, RESUME_VIDEOS, INTERVIEW_VIDEOS, get_courses_for_role, get_category_for_role
+from config.courses import (
+    COURSES_BY_CATEGORY,
+    RESUME_VIDEOS,
+    INTERVIEW_VIDEOS,
+    get_courses_for_role,
+    get_category_for_role
+)
 from config.job_roles import JOB_ROLES
 from config.database import (
-
     get_database_connection, save_resume_data, save_analysis_data,
     init_database, verify_admin, log_admin_action, save_ai_analysis_data,
     get_ai_analysis_stats, reset_ai_analysis_stats, get_detailed_ai_analysis_stats
 )
 
-import time
-from datetime import datetime
-from PIL import Image
-from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.shared import Inches, Pt
-from docx import Document
-import io
-import base64
-import plotly.graph_objects as go
-from streamlit_lottie import st_lottie
-import requests
-
+# AI Utilities
 from utils.ai_resume_analyzer import AIResumeAnalyzer
 from utils.resume_builder import ResumeBuilder
 from utils.resume_analyzer import ResumeAnalyzer
-import traceback
-import plotly.express as px
-import pandas as pd
-import json
-import streamlit as st
-import datetime
 
-# Set page config at the very beginning
-st.set_page_config(
     page_title="My AI Resume Analyzer",
     page_icon="🚀",
     layout="wide"

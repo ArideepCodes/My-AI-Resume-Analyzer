@@ -57,6 +57,7 @@ from utils.ai_resume_analyzer import AIResumeAnalyzer
 from utils.resume_builder import ResumeBuilder
 from utils.resume_analyzer import ResumeAnalyzer
 
+st.set_page_config(
     page_title="My AI Resume Analyzer",
     page_icon="🚀",
     layout="wide"

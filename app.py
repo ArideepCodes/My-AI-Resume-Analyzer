@@ -27,19 +27,20 @@ from ui_components import (
     about_section
 )
 
-# Dashboard Manager (only this class exists)
+# Dashboard Components
 from dashboard.dashboard import DashboardManager
+from dashboard.dashboard import (
+    render_analytics_section,
+    render_activity_section,
+    render_suggestions_section
+)
 
-# Feature Modules
+# Jobs & Feedback
 from jobs.job_search import render_job_search
 from feedback.feedback import FeedbackManager
-from config.courses import (
-    COURSES_BY_CATEGORY,
-    RESUME_VIDEOS,
-    INTERVIEW_VIDEOS,
-    get_courses_for_role,
-    get_category_for_role
-)
+
+# Configs
+from config.courses import COURSES_BY_CATEGORY, RESUME_VIDEOS, INTERVIEW_VIDEOS, get_courses_for_role, get_category_for_role
 from config.job_roles import JOB_ROLES
 from config.database import (
     get_database_connection, save_resume_data, save_analysis_data,
@@ -52,41 +53,8 @@ from utils.ai_resume_analyzer import AIResumeAnalyzer
 from utils.resume_builder import ResumeBuilder
 from utils.resume_analyzer import ResumeAnalyzer
 
-st.set_page_config(
-    page_title="My AI Resume Analyzer",
-    page_icon="🚀",
-    layout="wide"
-)
-
-# 👉 Sidebar Branding
-st.sidebar.markdown("---")
-st.sidebar.markdown("👨‍💻 Made with ❤️ by **Arideep Kanshabanik**")
-st.sidebar.markdown("[🔗 GitHub](https://github.com/ArideepCodes)")
-
-class ResumeApp:
-    def __init__(self):
-        """Initialize the application"""
-        if 'form_data' not in st.session_state:
-            st.session_state.form_data = {
-                'personal_info': {
-                    'full_name': '',
-                    'email': '',
-                    'phone': '',
-                    'location': '',
-                    'linkedin': '',
-                    'portfolio': ''
-                },
-                'summary': '',
-                'experiences': [],
-                'education': [],
-                'projects': [],
-                'skills_categories': {
-                    'technical': [],
-                    'soft': [],
-                    'languages': [],
-                    'tools': []
-                }
-            }
+# Initialize Dashboard Manager
+dashboard = DashboardManager()
 
         # Initialize navigation state
         if 'page' not in st.session_state:
